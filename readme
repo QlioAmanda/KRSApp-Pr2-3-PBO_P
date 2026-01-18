@@ -1,72 +1,58 @@
-# 🎓 Sistem KRS Mahasiswa (KRSApp)
+# Sistem KRS Mahasiswa (KRSApp)
 
-Aplikasi simulasi pengisian **Kartu Rencana Studi (KRS)** berbasis CLI (Command Line Interface). 
-Project ini dikembangkan sebagai tugas **Praktikum PBO Minggu ke-2 & 3**.
-
----
-
-## 📸 Preview Aplikasi
-
-![Tampilan Aplikasi](docs/screenshot-app.png)
-
-*(Tampilan antarmuka saat memilih jurusan dan input data mahasiswa)*
+Repositori ini berisi source code aplikasi **Sistem Kartu Rencana Studi (KRS)** berbasis CLI. 
+Proyek ini dikembangkan sebagai tugas **Praktikum PBO Minggu ke-2 & 3** untuk mendemonstrasikan pemahaman konsep Object Oriented Programming (OOP).
 
 ---
 
-## 🚀 Tentang Project
-Aplikasi ini menerapkan konsep dasar **Object Oriented Programming (OOP)** Java:
-* ✅ **Class & Object**: Pemodelan Mahasiswa, Jurusan, dan Mata Kuliah.
-* ✅ **Encapsulation**: Penggunaan `private` access modifier dan getter/setter.
-* ✅ **Static Members**: Menghitung total mahasiswa dan mata kuliah secara global.
-* ✅ **Relationships**: 
-    * *Has-A (Aggregation)*: Jurusan memiliki Mata Kuliah.
-    * *Uses-A (Dependency)*: Main class menggunakan model lain.
-* ✅ **Packaging**: Pemisahan logic ke dalam package `model` dan `service`.
+## 📂 Fitur & Tampilan Program
+
+Berikut adalah rincian fitur utama dalam aplikasi ini beserta tampilannya:
+
+### 1. Menu Utama & Input Data
+Program menampilkan pilihan jurusan, lalu meminta input Nama dan NIM mahasiswa secara dinamis.
+> **Output Tampilan:**
+> ![Screenshot Aplikasi](docs/screenshot-app.png)
+> *(Ganti `docs/screenshot-app.png` dengan screenshot program saat dijalankan)*
+
+### 2. Fitur Kalkulasi SKS
+Aplikasi secara otomatis menjumlahkan SKS berdasarkan mata kuliah yang ada di jurusan yang dipilih.
+> **Fungsi:** `totalSKS += mk.getSks();`
+
+### 3. Struktur OOP (Konsep)
+Penerapan konsep OOP yang digunakan dalam proyek ini:
+- **Encapsulation:** Menggunakan `private` field dan akses via `getter`.
+- **Aggregation:** Class `Jurusan` memiliki daftar `MataKuliah`.
+- **Static Member:** Menghitung total objek `Mahasiswa` yang dibuat.
 
 ---
 
-## 📂 Struktur Folder
-```text
-KRSApp-Pr2-3-PBO_P/
-├── src/                    # Source code (id.ac.polban...)
-├── bin/                    # Bytecode hasil compile (.class)
-├── docs/                   # Dokumentasi & Screenshot
-│   ├── class-diagram.png
-│   └── screenshot-app.png
-├── KRSApp.jar              # Aplikasi siap pakai (Executable)
-├── build.bat               # Script otomasi (Windows)
-├── manifest.txt            # Konfigurasi Main-Class JAR
-└── README.md               # File ini
+## 🚀 Cara Menjalankan (How to Run)
 
-## 🛠️ Fitur
-1.  **Pemilihan Jurusan**: Tersedia 5 opsi (Informatika, Mesin, Sipil, Elektro, Energi).
-2.  **Input Data Dinamis**: Nama & NIM Mahasiswa.
-3.  **Kalkulasi SKS**: Otomatis menjumlahkan SKS dari paket mata kuliah jurusan.
-4.  **Info Dosen**: Menampilkan pengampu setiap mata kuliah.
-5.  **Global Counter**: Melacak statistik jumlah objek yang dibuat.
+Pastikan kamu sudah menginstal **JDK (Java Development Kit)** minimal versi 8.
 
-## ⚙️ Cara Menjalankan Program
+### Opsi 1: Jalankan Otomatis (Windows)
+Jika kamu menggunakan Windows, cukup klik dua kali file `build.bat` atau ketik di terminal:
 
-Pastikan kamu sudah menginstall **Java Development Kit (JDK)** minimal versi 8.
+1. **Buka Terminal / CMD**.
+2. **Jalankan script**:
+   ```bash
+   .\build.bat
 
-### Opsi 1: Otomatis (Windows Only) ⚡
-Cukup klik dua kali file `build.bat` atau jalankan via terminal:
+### Opsi 2: Compile & Run Manual
+Jika ingin menjalankan secara manual via terminal:
+
+1. **Compile kode sumber**:
+  ```bash
+    javac -d bin src/id/ac/polban/model/*.java src/id/ac/polban/service/*.java
+2. **Jalankan program**:
+  ```bash
+    java -cp bin id.ac.polban.service.Main
+
+### Opsi 3: Menjalankan File JAR
+Jika file .jar sudah terbentuk:
 ```bash
-.\build.bat
-
-### Opsi 2: Menjalankan File JAR (Semua OS) ▶️
-Jika file KRSApp.jar sudah ada:
-```bash
-java -jar KRSApp.jar
-
-### Opsi 3: Compile Manual 🛠️
-Jika ingin meng-compile ulang dari awal:
-```bash
-# 1. Compile source code ke folder bin
-javac -d bin src/id/ac/polban/model/*.java src/id/ac/polban/service/*.java
-
-# 2. Jalankan class Main
-java -cp bin id.ac.polban.service.Main
+  java -jar KRSApp.jar
 
 ## 👤 Identitas Pengirim
 
