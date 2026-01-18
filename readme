@@ -1,145 +1,78 @@
-# 🎓 Sistem KRS Mahasiswa
+# 🎓 Sistem KRS Mahasiswa (KRSApp)
 
-Aplikasi sederhana berbasis **Java** untuk mensimulasikan sistem **Kartu Rencana Studi (KRS)** mahasiswa.  
-Project ini dibuat sebagai latihan konsep **Object Oriented Programming (OOP)** dengan menerapkan:
-
-- 🏷️ **Class & Object**  
-- 🔒 **Encapsulation**  
-- 📌 **Static field & method**  
-- 🔗 **Relasi antar class (Dependency & Aggregation)**  
-- 📦 **Package & JAR file**  
+Aplikasi simulasi pengisian **Kartu Rencana Studi (KRS)** berbasis CLI (Command Line Interface). 
+Project ini dikembangkan sebagai tugas **Praktikum PBO Minggu ke-2 & 3**.
 
 ---
 
-## 🚀 Fitur Utama
-- Pilihan **Jurusan** dari 5 Program Studi:
-  1. Teknik Informatika  
-  2. Teknik Mesin  
-  3. Teknik Sipil  
-  4. Teknik Elektronika  
-  5. Teknik Energi  
+## 📸 Preview Aplikasi
 
-- Input **Data Mahasiswa**: Nama & NIM  
-- Setiap jurusan memiliki daftar **Mata Kuliah**, **Dosen**, dan **ID Mata Kuliah**  
-- Menampilkan daftar mata kuliah yang diambil + **total SKS**  
-- Menghitung total mahasiswa & total mata kuliah dengan **static counter**  
+![Tampilan Aplikasi](docs/screenshot-app.png)
+
+*(Tampilan antarmuka saat memilih jurusan dan input data mahasiswa)*
 
 ---
 
-## 🏗️ Struktur Project
-
-```
-
-PBO\_Pratikum2/
-├── src/
-│    └── id/ac/polban/
-│         ├── model/
-│         │    ├── Jurusan.java
-│         │    ├── Mahasiswa.java
-│         │    └── MataKuliah.java
-│         └── service/
-│              └── Main.java
-├── bin/                        # hasil compile (.class)
-├── docs/                       # dokumentasi
-│    └── class-diagram.png       # UML class diagram
-├── build.bat                   # script compile + run otomatis
-├── manifest.txt                # konfigurasi JAR
-├── KRSApp.jar                  # file JAR siap dijalankan
-├── .gitignore                  # file untuk Git ignore
-└── README.md                   # dokumentasi project
-
-````
+## 🚀 Tentang Project
+Aplikasi ini menerapkan konsep dasar **Object Oriented Programming (OOP)** Java:
+* ✅ **Class & Object**: Pemodelan Mahasiswa, Jurusan, dan Mata Kuliah.
+* ✅ **Encapsulation**: Penggunaan `private` access modifier dan getter/setter.
+* ✅ **Static Members**: Menghitung total mahasiswa dan mata kuliah secara global.
+* ✅ **Relationships**: 
+    * *Has-A (Aggregation)*: Jurusan memiliki Mata Kuliah.
+    * *Uses-A (Dependency)*: Main class menggunakan model lain.
+* ✅ **Packaging**: Pemisahan logic ke dalam package `model` dan `service`.
 
 ---
 
-## ⚙️ Cara Menjalankan
+## 📂 Struktur Folder
+```text
+KRSApp-Pr2-3-PBO_P/
+├── src/                    # Source code (id.ac.polban...)
+├── bin/                    # Bytecode hasil compile (.class)
+├── docs/                   # Dokumentasi & Screenshot
+│   ├── class-diagram.png
+│   └── screenshot-app.png
+├── KRSApp.jar              # Aplikasi siap pakai (Executable)
+├── build.bat               # Script otomasi (Windows)
+├── manifest.txt            # Konfigurasi Main-Class JAR
+└── README.md               # File ini
 
-### ▶️ 1. Jalankan langsung JAR
-```bash
-java -jar KRSApp.jar
-````
+## 🛠️ Fitur
+1.  **Pemilihan Jurusan**: Tersedia 5 opsi (Informatika, Mesin, Sipil, Elektro, Energi).
+2.  **Input Data Dinamis**: Nama & NIM Mahasiswa.
+3.  **Kalkulasi SKS**: Otomatis menjumlahkan SKS dari paket mata kuliah jurusan.
+4.  **Info Dosen**: Menampilkan pengampu setiap mata kuliah.
+5.  **Global Counter**: Melacak statistik jumlah objek yang dibuat.
 
-### 🛠️ 2. Compile manual
+## ⚙️ Cara Menjalankan Program
 
-```bash
-javac -d bin src/id/ac/polban/model/*.java src/id/ac/polban/service/*.java
-```
+Pastikan kamu sudah menginstall **Java Development Kit (JDK)** minimal versi 8.
 
-### 📦 3. Buat JAR manual
-
-```bash
-jar cfm KRSApp.jar manifest.txt -C bin .
-```
-
-### ⚡ 4. Compile & Run otomatis (Windows)
-
+### Opsi 1: Otomatis (Windows Only) ⚡
+Cukup klik dua kali file `build.bat` atau jalankan via terminal:
 ```bash
 .\build.bat
-```
 
----
+### Opsi 2: Menjalankan File JAR (Semua OS) ▶️
+Jika file KRSApp.jar sudah ada:
+```bash
+java -jar KRSApp.jar
 
-## 📊 Relasi Antar Kelas
+### Opsi 3: Compile Manual 🛠️
+Jika ingin meng-compile ulang dari awal:
+```bash
+# 1. Compile source code ke folder bin
+javac -d bin src/id/ac/polban/model/*.java src/id/ac/polban/service/*.java
 
-* **Aggregation**
+# 2. Jalankan class Main
+java -cp bin id.ac.polban.service.Main
 
-  * `Jurusan` memiliki (`has-a`) daftar `MataKuliah`
-  * `Mahasiswa` memiliki (`has-a`) `Jurusan`
+## 👤 Identitas Pengirim
 
-* **Dependency**
-
-  * `Main` menggunakan (`uses-a`) `Mahasiswa`, `Jurusan`, `MataKuliah`
-
----
-
-## 🖥️ Contoh Output Program
-
-```
-===== Sistem KRS Mahasiswa =====
-Pilih Jurusan:
-1. Teknik Informatika
-2. Teknik Mesin
-3. Teknik Sipil
-4. Teknik Elektronika
-5. Teknik Energi
-Masukkan pilihan jurusan: 1
-Masukkan Nama: Jeno
-Masukkan NIM: 241511087
-
-=== Data Mahasiswa ===
-Nama: Qlio
-NIM: 241511087
-Jurusan: Teknik Informatika
-
-Daftar Mata Kuliah:
-- IF101 | Pemrograman Dasar (3 SKS) | Dosen: Budi Santoso
-- IF102 | Struktur Data (3 SKS) | Dosen: Siti Aminah
-- IF103 | Basis Data (3 SKS) | Dosen: Dewi Lestari
-
-Total SKS : 9
-Jumlah Mahasiswa: 1
-Jumlah Mata Kuliah: 3
-```
-
----
-
-## 📌 Class Diagram
-
-![Class Diagram](docs/class-diagram.png)
-
----
-
-## 📝 Lesson Learned
-
-* Membuat **Class & Object** di Java
-* Menerapkan **Encapsulation** (`private` attribute + getter/setter)
-* Menggunakan **ArrayList** untuk menyimpan daftar mata kuliah
-* Menerapkan **Static Field & Method** untuk counter mahasiswa & mata kuliah
-* Memanfaatkan **Package** untuk memisahkan `model` & `service`
-* Membuat **JAR file** agar aplikasi bisa dijalankan dengan `java -jar`
-
----
-
-👨‍💻 Dibuat untuk latihan **Praktikum PBO Minggu ke-2 & 3**
-
-```
+| | |
+| :--- | :--- |
+| **Nama** | : Qlio Amanda Febriany |
+| **NIM** | : 241511087 |
+| **Kelas** | : 2C |
+| **Prodi** | : D3 Teknik Informatika |
